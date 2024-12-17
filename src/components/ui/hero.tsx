@@ -15,7 +15,7 @@ export default function Hero({
   };
 }) {
   return (
-    <section className="flex flex-col items-center justify-center min-h-[50rem] relative p-10">
+    <section className="flex flex-col items-center justify-center min-h-[40rem] relative p-10">
       <Image
         src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
         width={1280}
@@ -34,24 +34,23 @@ export default function Hero({
       </div>
       <div className="flex flex-col gap-5 absolute bottom-5 xl:left-[10rem] xl:bottom-[10rem] rounded-full sm:w-96 w-60">
         <div>
-          <h2 className="text-inherit text-3xl font-semibold">{movie.title}</h2>
+          <h2 className="text-inherit text-4xl font-bold">{movie.title}</h2>
           {movie.release_date && (
-            <p className="text-gray-500 text-lg font-medium">
+            <p className="text-gray-400 text-lg font-semibold">
               {new Date(movie.release_date).getFullYear()}
             </p>
           )}
         </div>
         <div className="flex flex-col sm:flex-row gap-3 justify-center sm:justify-start">
-          <Link className="w-full" href={`/movies/${movie.id}`}>
-            <Button
-              className="text-md text-black font-semibold w-full uppercase"
-              radius="full"
-              color="primary"
-              endContent={<IconPlayerPlayFilled size={15} />}
-            >
-              Ver mas
-            </Button>
-          </Link>
+          <Button
+            className="text-md text-black font-semibold uppercase"
+            radius="full"
+            color="primary"
+            href={`/movies/${movie.id}`}
+            as={Link}
+          >
+            <IconPlayerPlayFilled size={20} />
+          </Button>
           <Button variant="flat" radius="full" isIconOnly>
             <IconHeart size={20} />
           </Button>
