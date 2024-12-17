@@ -8,7 +8,23 @@ export default {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
   ],
-  theme: {},
   darkMode: 'class',
-  plugins: [nextui()],
+  plugins: [
+    nextui({
+      themes: {
+        light: {
+          colors: {
+            primary: '#baff29',
+            default: '#151515',
+          },
+        },
+        dark: {
+          colors: {
+            primary: '#baff29',
+            default: '#101010',
+          },
+        },
+      },
+    }),
+  ],
 } satisfies Config;
