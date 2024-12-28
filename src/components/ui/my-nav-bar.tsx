@@ -24,7 +24,7 @@ export default function MyNavbar() {
       href: '/',
     },
     {
-      label: 'Peliculas',
+      label: 'Películas',
       href: '/movies',
     },
     {

@@ -29,21 +29,23 @@ export default function Hero({
           Bienvenido a MovieVerse
         </h1>
         <p className="text-xl font-medium drop-shadow-lg text-center">
-          Encontraras las mejores peliculas y series
+          Encontraras las mejores películas y series
         </p>
       </div>
-      <div className="flex flex-col gap-5 absolute bottom-5 xl:left-[10rem] xl:bottom-[10rem] rounded-full sm:w-96 w-60">
+      <div className="flex flex-col gap-5 absolute xl:left-[5rem] bottom-10 sm:w-96">
         <div>
-          <h2 className="text-inherit text-4xl font-bold">{movie.title}</h2>
           {movie.release_date && (
-            <p className="text-gray-400 text-lg font-semibold">
+            <p className="text-gray-300 text-lg font-semibold">
               {new Date(movie.release_date).getFullYear()}
             </p>
           )}
+          <h2 className="text-inherit text-4xl max-sm:text-2xl font-bold">
+            {movie.title}
+          </h2>
         </div>
-        <div className="flex flex-col sm:flex-row gap-3 justify-center sm:justify-start">
+        <div className="flex flex-row gap-3">
           <Button
-            className="text-md text-black font-semibold uppercase"
+            className="text-md text-black font-semibold uppercase max-xl:w-full"
             radius="full"
             color="primary"
             href={`/movies/${movie.id}`}
