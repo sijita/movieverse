@@ -61,3 +61,14 @@ export const fetchMoviesByCategory = async (id: string) => {
     return [];
   }
 };
+
+export async function fetchTrendingMovies(key: 'day' | 'week') {
+  try {
+    const { data } = await axios.get(`/trending/movie/${key}?language=es-ES`);
+    const movies = data.results;
+
+    return movies;
+  } catch {
+    return [];
+  }
+}
