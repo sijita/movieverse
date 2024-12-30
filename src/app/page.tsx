@@ -4,9 +4,11 @@ import {
   fetchMoviesCategories,
   fetchPopularMovies,
   fetchRandomMovie,
+  fetchTrendingMovies,
 } from './api';
 import Categories from '@/components/core/categories/categories';
 import MovieBentoGrid from '@/components/core/movies/movies-grid';
+import TrendingMoviesSection from '@/components/core/movies/trending-movies-section';
 
 export default async function Home({
   searchParams,
@@ -17,18 +19,20 @@ export default async function Home({
     searchParams?.category !== undefined
       ? await fetchMoviesByCategory(searchParams?.category)
       : await fetchPopularMovies();
-  const [movie, categories] = await Promise.all([
+  const [movie, trendingMovies, categories] = await Promise.all([
     fetchRandomMovie(),
+    fetchTrendingMovies((searchParams?.trending as 'day' | 'week') ?? 'week'),
     fetchMoviesCategories(),
   ]);
 
   return (
-    <main className="min-h-screen flex flex-col gap-10">
+    <main className="min-h-screen flex flex-col">
       <Hero movie={movie} />
-      <div className="flex flex-col lg:flex-row items-stretch p-10 sm:p-20 gap-10 h-screen">
+      <div className="flex flex-col lg:flex-row items-stretch p-10 sm:p-20 gap-10 h-screen overflow-auto">
         <Categories categories={categories} />
         <MovieBentoGrid movies={movies} categories={categories} />
       </div>
+      <TrendingMoviesSection trendingMovies={trendingMovies} />
     </main>
   );
 }
