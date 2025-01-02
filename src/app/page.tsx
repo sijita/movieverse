@@ -7,7 +7,7 @@ import {
   fetchTrendingMovies,
 } from './api';
 import Categories from '@/components/core/categories/categories';
-import MovieBentoGrid from '@/components/core/movies/movies-grid';
+import MoviesBentoGrid from '@/components/core/movies/movies-bento-grid';
 import TrendingMoviesSection from '@/components/core/movies/trending-movies-section';
 
 export default async function Home({
@@ -30,9 +30,12 @@ export default async function Home({
       <Hero movie={movie} />
       <div className="flex flex-col lg:flex-row items-stretch p-10 sm:p-20 gap-10 h-screen overflow-auto">
         <Categories categories={categories} />
-        <MovieBentoGrid movies={movies} categories={categories} />
+        <MoviesBentoGrid movies={movies} categories={categories} />
       </div>
-      <TrendingMoviesSection trendingMovies={trendingMovies} />
+      <TrendingMoviesSection
+        trendingMovies={trendingMovies}
+        categories={categories}
+      />
     </main>
   );
 }

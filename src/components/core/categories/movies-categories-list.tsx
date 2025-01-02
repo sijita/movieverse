@@ -29,7 +29,7 @@ export default function MoviesCategoriesList({
                       .toLowerCase()
                       .normalize('NFD')
                       .replace(/[\u0300-\u036f]/g, '')
-                      .replace(' ', '_') as keyof typeof categoryIcons
+                      .replace(/ /g, '_') as keyof typeof categoryIcons
                   ]
                 }
               </div>
