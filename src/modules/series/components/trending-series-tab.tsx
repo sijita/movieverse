@@ -1,10 +1,8 @@
 'use client';
-import useSelectTrendingKey from '@/hooks/use-select-trending-key';
+import { handleSelectTrendingKey } from '@/modules/series/actions';
 import { Tab, Tabs } from '@nextui-org/react';
 
-export default function TrendingMoviesTab() {
-  const { handleSelectKey } = useSelectTrendingKey();
-
+export default function TrendingSeriesTab() {
   return (
     <Tabs
       radius="full"
@@ -15,7 +13,9 @@ export default function TrendingMoviesTab() {
         tabContent: 'group-data-[selected=true]:text-black font-medium',
         base: 'w-full md:w-auto',
       }}
-      onSelectionChange={(key) => handleSelectKey(key as 'week' | 'day')}
+      onSelectionChange={async (key) =>
+        await handleSelectTrendingKey(key as 'day' | 'week')
+      }
       defaultSelectedKey={'week'}
     >
       <Tab key="week" title="Esta semana" />

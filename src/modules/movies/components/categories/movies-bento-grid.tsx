@@ -1,4 +1,4 @@
-import { Movie } from '@/types/movies';
+import { Movie } from '@/modules/movies/types/movie';
 import MovieBentoCard from './movie-bento-card';
 
 export default function MoviesBentoGrid({

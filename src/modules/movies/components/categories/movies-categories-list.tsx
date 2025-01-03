@@ -1,5 +1,5 @@
 'use client';
-import useSelectCategory from '@/hooks/use-select-category';
+import useSelectCategory from '@/modules/core/hooks/use-select-category';
 import { categoryIcons } from '@/utils/constants/cateogry-icons';
 import { Button, ScrollShadow } from '@nextui-org/react';
 

@@ -1,15 +1,17 @@
+'use client';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Movie } from '@/types/movies';
+import { Movie } from '@/modules/movies/types/movie';
 import { IconCalendar, IconStar } from '@tabler/icons-react';
 import { Chip } from '@nextui-org/react';
 import Link from 'next/link';
+import { Serie } from '@/modules/series/types/serie';
 
-export default function MovieCard({
-  movie,
+export default function PosterCard({
+  poster,
   categories,
 }: {
-  movie: Movie;
+  poster: Movie | Serie;
   categories: { id: number; name: string }[];
 }) {
   return (
@@ -24,14 +26,14 @@ export default function MovieCard({
           <div className="flex items-center gap-1">
             <IconStar size={13} className="text-yellow-400 fill-yellow-400" />
             <span className="text-white/80 text-sm font-semibold">
-              {movie.vote_average.toFixed(1)}
+              {poster.vote_average.toFixed(1)}
             </span>
           </div>
         </Chip>
         <div>
           <Image
-            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-            alt={movie.title}
+            src={`https://image.tmdb.org/t/p/w500${poster.poster_path}`}
+            alt={'title' in poster ? poster.title : poster.name}
             layout="fill"
             objectFit="cover"
             className="transition-transform duration-500 group-hover:scale-110"
@@ -41,16 +43,22 @@ export default function MovieCard({
         <div className="relative h-full p-6 flex flex-col justify-end">
           <div className="space-y-1">
             <h3 className="text-xl font-bold text-white group-hover:text-primary-foreground transition-colors">
-              {movie.title}
+              {'title' in poster ? poster.title : poster.name}
             </h3>
             <div className="flex flex-wrap gap-4">
               <div className="flex items-center gap-1">
-                <IconCalendar size={15} />
+                <IconCalendar size={15} className="flex-shrink-0" />
                 <span className="text-sm text-gray-300">
-                  {new Date(movie.release_date).getFullYear()}
+                  {'release_date' in poster
+                    ? new Date(poster.release_date).getFullYear()
+                    : new Intl.DateTimeFormat('es-ES', {
+                        day: '2-digit',
+                        month: 'short',
+                        year: 'numeric',
+                      }).format(new Date(poster.first_air_date))}
                 </span>
               </div>
-              {movie.genre_ids.slice(0, 1).map((genre, i) => (
+              {poster.genre_ids.slice(0, 1).map((genre, i) => (
                 <Chip
                   key={i}
                   className="bg-white/20 text-white text-xs"
@@ -63,7 +71,7 @@ export default function MovieCard({
           </div>
           <div className="absolute inset-x-0 bottom-0 h-0 bg-gradient-to-t from-primary/80 to-primary/60 backdrop-blur-sm transition-all duration-300 group-hover:h-1/3 flex items-center justify-center opacity-0 group-hover:opacity-100">
             <Link
-              href={`/movies/${movie.id}`}
+              href={`/posters/${poster.id}`}
               className="rounded-full bg-white px-6 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-100 transition-colors"
             >
               Ver detalles

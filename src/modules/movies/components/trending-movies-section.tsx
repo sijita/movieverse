@@ -1,8 +1,8 @@
 'use client';
 import { IconFlame } from '@tabler/icons-react';
 import TrendingMoviesTab from './trending-movies-tab';
-import MoviesRow from './movies-row';
-import { Movie } from '@/types/movies';
+import { Movie } from '@/modules/movies/types/movie';
+import PostersRow from '@/modules/core/components/ui/posters-row';
 
 export default function TrendingMoviesSection({
   trendingMovies,
@@ -12,7 +12,7 @@ export default function TrendingMoviesSection({
   categories: { id: number; name: string }[];
 }) {
   return (
-    <section className="flex flex-col gap-5 p-10 sm:p-20">
+    <section className="flex flex-col gap-5">
       <div className="flex flex-wrap justify-between gap-5">
         <div className="flex items-center gap-3">
           <IconFlame
@@ -23,7 +23,7 @@ export default function TrendingMoviesSection({
         </div>
         <TrendingMoviesTab />
       </div>
-      <MoviesRow movies={trendingMovies} categories={categories} />
+      <PostersRow posters={trendingMovies} categories={categories} />
     </section>
   );
 }

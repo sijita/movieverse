@@ -1,41 +1,59 @@
-import Hero from '@/components/ui/hero';
+import Hero from '@/modules/core/components/ui/hero';
 import {
-  fetchMoviesByCategory,
   fetchMoviesCategories,
-  fetchPopularMovies,
+  fetchNowPlayingMovies,
   fetchRandomMovie,
   fetchTrendingMovies,
-} from './api';
-import Categories from '@/components/core/categories/categories';
-import MoviesBentoGrid from '@/components/core/movies/movies-bento-grid';
-import TrendingMoviesSection from '@/components/core/movies/trending-movies-section';
+} from '../modules/movies/api';
+import HomeMoviesSection from '@/modules/movies/components/home-movies-section';
+import HomeSeriesSection from '@/modules/series/components/home-series-section';
+import { fetchSeriesCategories, fetchTrendingSeries } from '../modules/series/api';
+import { Divider } from '@nextui-org/react';
+import { cookies } from 'next/headers';
+import Footer from '@/modules/core/components/ui/footer';
 
-export default async function Home({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | undefined };
-}) {
-  const movies =
-    searchParams?.category !== undefined
-      ? await fetchMoviesByCategory(searchParams?.category)
-      : await fetchPopularMovies();
-  const [movie, trendingMovies, categories] = await Promise.all([
+export default async function Home() {
+  const cookieStore = await cookies();
+  // const movies =
+  //   searchParams?.category !== undefined
+  //     ? await fetchMoviesByCategory(searchParams?.category)
+  //     : await fetchPopularMovies();
+  const [
+    movie,
+    trendingMovies,
+    trendingSeries,
+    nowPlayingMovies,
+    moviesCategories,
+    seriesCategories,
+  ] = await Promise.all([
     fetchRandomMovie(),
-    fetchTrendingMovies((searchParams?.trending as 'day' | 'week') ?? 'week'),
+    fetchTrendingMovies(
+      (cookieStore.get('trendingMovies')?.value as 'day' | 'week') ?? 'week'
+    ),
+    fetchTrendingSeries(
+      (cookieStore.get('trendingSeries')?.value as 'day' | 'week') ?? 'week'
+    ),
+    fetchNowPlayingMovies(),
     fetchMoviesCategories(),
+    fetchSeriesCategories(),
   ]);
 
   return (
     <main className="min-h-screen flex flex-col">
       <Hero movie={movie} />
-      <div className="flex flex-col lg:flex-row items-stretch p-10 sm:p-20 gap-10 h-screen overflow-auto">
-        <Categories categories={categories} />
-        <MoviesBentoGrid movies={movies} categories={categories} />
-      </div>
-      <TrendingMoviesSection
+      <HomeMoviesSection
         trendingMovies={trendingMovies}
-        categories={categories}
+        nowPlayingMovies={nowPlayingMovies}
+        categories={moviesCategories}
       />
+      <div className="my-10 px-20 max-sm:px-10">
+        <Divider />
+      </div>
+      <HomeSeriesSection
+        trendingSeries={trendingSeries}
+        categories={seriesCategories}
+      />
+      <Footer />
     </main>
   );
 }

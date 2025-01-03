@@ -15,7 +15,7 @@ export default function Hero({
   };
 }) {
   return (
-    <section className="flex flex-col items-center justify-center min-h-[40rem] relative p-10">
+    <section className="flex flex-col items-center justify-center min-h-[40rem] relative p-10 mb-10">
       <Image
         src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
         width={1280}

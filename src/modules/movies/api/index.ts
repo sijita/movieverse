@@ -1,4 +1,4 @@
-import axios from '@/utils/lib/axios-client';
+import axios from '@/lib/axios-client';
 
 export const fetchRandomMovie = async () => {
   try {
@@ -62,13 +62,26 @@ export const fetchMoviesByCategory = async (id: string) => {
   }
 };
 
-export async function fetchTrendingMovies(key: 'day' | 'week') {
+export const fetchTrendingMovies = async (time: 'day' | 'week') => {
   try {
-    const { data } = await axios.get(`/trending/movie/${key}?language=es-ES`);
+    const { data } = await axios.get(`/trending/movie/${time}?language=es-ES`);
     const movies = data.results;
 
     return movies;
   } catch {
     return [];
   }
-}
+};
+
+export const fetchNowPlayingMovies = async () => {
+  try {
+    const { data } = await axios.get(
+      '/movie/now_playing?language=es-ES&page=1'
+    );
+    const movies = data.results;
+
+    return movies;
+  } catch {
+    return [];
+  }
+};

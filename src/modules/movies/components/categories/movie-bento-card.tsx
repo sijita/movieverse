@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import { IconCalendar, IconStar } from '@tabler/icons-react';
-import { Movie } from '@/types/movies';
+import { Movie } from '@/modules/movies/types/movie';
 import { Chip } from '@nextui-org/react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
@@ -54,7 +54,7 @@ export default function MovieBentoCard({
           </h3>
           <div className="flex flex-wrap gap-4">
             <div className="flex items-center gap-1">
-              <IconCalendar size={15} />
+              <IconCalendar size={15} className="flex-shrink-0" />
               <span className="text-sm text-gray-300">
                 {new Date(movie.release_date).getFullYear()}
               </span>
