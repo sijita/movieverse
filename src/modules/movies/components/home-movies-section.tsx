@@ -1,17 +1,25 @@
 import Link from 'next/link';
 import TrendingMoviesSection from './trending-movies-section';
 import NowPlayingMoviesSection from './now-playing-movies-section';
-import { Movie } from '@/modules/movies/types/movie';
+import {
+  fetchMoviesCategories,
+  fetchNowPlayingMovies,
+  fetchTrendingMovies,
+} from '@/modules/movies/api';
+import { cookies } from 'next/headers';
 
-export default function HomeMoviesSection({
-  trendingMovies,
-  nowPlayingMovies,
-  categories,
-}: {
-  trendingMovies: Movie[];
-  nowPlayingMovies: Movie[];
-  categories: { id: number; name: string }[];
-}) {
+export default async function HomeMoviesSection() {
+  const cookieStore = await cookies();
+
+  const [trendingMovies, nowPlayingMovies, categories] = await Promise.all([
+    fetchTrendingMovies(
+      (cookieStore.get('trendingMovies')?.value as 'day' | 'week') ?? 'week'
+    ),
+
+    fetchNowPlayingMovies(),
+    fetchMoviesCategories(),
+  ]);
+
   return (
     <section className="px-10 sm:px-20 py-5 flex flex-col gap-10">
       <div>

@@ -1,14 +1,21 @@
 import Link from 'next/link';
 import TrendingSeriesSection from './trending-series-section';
-import { Serie } from '@/modules/series/types/serie';
+import {
+  fetchSeriesCategories,
+  fetchTrendingSeries,
+} from '@/modules/series/api';
+import { cookies } from 'next/headers';
 
-export default function HomeSeriesSection({
-  trendingSeries,
-  categories,
-}: {
-  trendingSeries: Serie[];
-  categories: { id: number; name: string }[];
-}) {
+export default async function HomeSeriesSection() {
+  const cookieStore = await cookies();
+
+  const [trendingSeries, categories] = await Promise.all([
+    fetchTrendingSeries(
+      (cookieStore.get('trendingSeries')?.value as 'day' | 'week') ?? 'week'
+    ),
+    fetchSeriesCategories(),
+  ]);
+
   return (
     <section className="px-10 sm:px-20 py-5 flex flex-col gap-10">
       <div>

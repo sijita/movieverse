@@ -21,3 +21,13 @@ export const fetchSeriesCategories = async () => {
     return [];
   }
 };
+
+export const fetchLatestSeries = async () => {
+  try {
+    const { data } = await axios.get('/tv/latest?language=es-ES&page=1');
+
+    return data;
+  } catch {
+    return [];
+  }
+};
