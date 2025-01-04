@@ -4,6 +4,7 @@ import {
   IconBrandInstagram,
   IconBrandTwitter,
 } from '@tabler/icons-react';
+import Link from 'next/link';
 
 export default function Footer() {
   const footerLinks = [
@@ -30,22 +31,18 @@ export default function Footer() {
         ))}
       </nav>
       <div className="flex justify-center mt-8 space-x-6">
-        <a href="#" className="text-gray-400 hover:text-gray-500">
-          <span className="sr-only">Facebook</span>
-          <IconBrandFacebook size={24} />
-        </a>
-        <a href="#" className="text-gray-400 hover:text-gray-500">
-          <span className="sr-only">Instagram</span>
-          <IconBrandInstagram size={24} />
-        </a>
-        <a href="#" className="text-gray-400 hover:text-gray-500">
-          <span className="sr-only">Twitter</span>
-          <IconBrandTwitter size={24} />
-        </a>
-        <a href="#" className="text-gray-400 hover:text-gray-500">
-          <span className="sr-only">GitHub</span>
-          <IconBrandGithub size={24} />
-        </a>
+        <Link href="#">
+          <IconBrandFacebook className="text-primary" size={24} />
+        </Link>
+        <Link href="#">
+          <IconBrandInstagram className="text-primary" size={24} />
+        </Link>
+        <Link href="#">
+          <IconBrandTwitter className="text-primary" size={24} />
+        </Link>
+        <Link href="#">
+          <IconBrandGithub className="text-primary" size={24} />
+        </Link>
       </div>
       <p className="mt-8 text-base leading-6 text-center text-gray-400">
         © 2024 Movieverse in colab with Simón Jiménez T, Inc. All rights

@@ -3,7 +3,6 @@ import { fetchRandomMovie } from '../modules/movies/api';
 import HomeMoviesSection from '@/modules/movies/components/home-movies-section';
 import HomeSeriesSection from '@/modules/series/components/home-series-section';
 import { Divider } from '@nextui-org/react';
-import Footer from '@/modules/core/components/ui/footer';
 
 export default async function Home() {
   const movie = await fetchRandomMovie();
@@ -16,7 +15,6 @@ export default async function Home() {
         <Divider />
       </div>
       <HomeSeriesSection />
-      <Footer />
     </main>
   );
 }
