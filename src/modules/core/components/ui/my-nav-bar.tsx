@@ -7,12 +7,13 @@ import {
   NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
-  Link,
   Button,
 } from '@nextui-org/react';
-import { IconMovie, IconSearch, IconUser } from '@tabler/icons-react';
+import { IconMovie, IconUser } from '@tabler/icons-react';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
+import SearchBtn from './search-btn';
+import Link from 'next/link';
 
 export default function MyNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -68,7 +69,7 @@ export default function MyNavbar() {
           <NavbarItem key={i} isActive={item.href === pathname}>
             <Link
               className={`text-lg hover:text-primary ${
-                pathname.includes(item.href)
+                pathname === item.href
                   ? 'text-primary font-semibold'
                   : 'text-white'
               }`}
@@ -80,11 +81,9 @@ export default function MyNavbar() {
         ))}
       </NavbarContent>
       <NavbarContent className="hidden sm:flex" justify="end">
-        <NavbarItem>
-          <Button radius="full" isIconOnly>
-            <IconSearch className="text-primary" size={20} />
-          </Button>
-        </NavbarItem>
+        <NavbarMenuItem>
+          <SearchBtn />
+        </NavbarMenuItem>
         <NavbarItem>
           <Button
             color="primary"
@@ -99,9 +98,7 @@ export default function MyNavbar() {
       </NavbarContent>
       <NavbarMenu>
         <NavbarMenuItem>
-          <Button radius="full" fullWidth>
-            <IconSearch size={20} />
-          </Button>
+          <SearchBtn />
         </NavbarMenuItem>
         {navItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>

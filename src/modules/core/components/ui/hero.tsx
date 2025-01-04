@@ -3,6 +3,7 @@ import { Button } from '@nextui-org/react';
 import { IconHeart, IconPlayerPlayFilled } from '@tabler/icons-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function Hero({
   movie,
@@ -14,6 +15,8 @@ export default function Hero({
     release_date: string;
   };
 }) {
+  const pathname = usePathname();
+
   return (
     <section className="flex flex-col items-center justify-center min-h-[40rem] relative p-10 mb-10">
       <Image
@@ -24,16 +27,24 @@ export default function Hero({
         className="object-cover w-full h-full absolute z-0 filter brightness-50 blur-sm"
         priority
       />
-      <div className="flex flex-col items-center justify-center gap-5 z-10">
-        <h1 className="lg:text-5xl text-4xl text-center text-inherit font-bold drop-shadow-lg">
-          Bienvenido a MovieVerse
-        </h1>
-        <p className="text-xl font-medium drop-shadow-lg text-center">
-          Encontraras las mejores películas y series
-        </p>
-      </div>
-      <div className="flex flex-col gap-5 absolute xl:left-[5rem] bottom-10 sm:w-96">
-        <div>
+      {pathname === '/' && (
+        <div className="flex flex-col items-center justify-center gap-5 z-10">
+          <h1 className="lg:text-5xl text-4xl text-center text-inherit font-bold drop-shadow-lg">
+            Bienvenido a MovieVerse
+          </h1>
+          <p className="text-xl font-medium drop-shadow-lg text-center">
+            Encontraras las mejores películas y series
+          </p>
+        </div>
+      )}
+      <div
+        className={`flex flex-col gap-5 absolute ${
+          pathname === '/'
+            ? 'xl:left-[5rem] bottom-10'
+            : 'top-1/2 transform -translate-y-1/2'
+        } sm:w-96`}
+      >
+        <div className={`${pathname !== '/' && 'text-center'}`}>
           {movie.release_date && (
             <p className="text-gray-300 text-lg font-semibold">
               {new Date(movie.release_date).getFullYear()}
@@ -43,7 +54,11 @@ export default function Hero({
             {movie.title}
           </h2>
         </div>
-        <div className="flex flex-row gap-3">
+        <div
+          className={`flex flex-row gap-3 ${
+            pathname !== '/' && 'justify-center'
+          }`}
+        >
           <Button
             className="text-md text-black font-semibold uppercase max-xl:w-full"
             radius="full"
