@@ -34,8 +34,6 @@ export default function SearchBtn() {
     fetchResults();
   }, [query]);
 
-  console.log(searchResults);
-
   return (
     <>
       <Button onPress={onOpen} radius="full" fullWidth isIconOnly>

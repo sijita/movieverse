@@ -7,7 +7,7 @@ import {
   fetchTrendingMovies,
 } from '@/modules/movies/api';
 import { cookies } from 'next/headers';
-import UpcomingMoviesSection from './top-movies-section';
+import TopMoviesSection from './top-movies-section';
 
 export default async function MoviesPageContent() {
   const cookieStore = await cookies();
@@ -32,7 +32,7 @@ export default async function MoviesPageContent() {
         nowPlayingMovies={nowPlayingMovies}
         categories={categories}
       />
-      <UpcomingMoviesSection topMovies={topMovies} categories={categories} />
+      <TopMoviesSection topMovies={topMovies} categories={categories} />
     </section>
   );
 }
