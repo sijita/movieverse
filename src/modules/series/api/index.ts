@@ -49,7 +49,7 @@ export const fetchSeriesCategories = async () => {
   }
 };
 
-export const fetchSerieByCategory = async (id: string) => {
+export const fetchSeriesByCategory = async (id: string) => {
   try {
     const { data } = await axios.get(
       `/discover/tv?with_genres=${id}&language=es-ES`

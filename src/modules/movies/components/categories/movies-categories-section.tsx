@@ -2,13 +2,19 @@ import MoviesBentoGrid from './movies-bento-grid';
 import { IconCategoryFilled } from '@tabler/icons-react';
 import MoviesCategoriesList from './movies-categories-list';
 import {
+  fetchMoviesByCategory,
   fetchMoviesCategories,
   fetchPopularMovies,
 } from '@/modules/movies/api';
 
-export default async function MoviesCategoriesSection() {
-  const [popularMovies, categories] = await Promise.all([
+export default async function MoviesCategoriesSection({
+  category,
+}: {
+  category?: string;
+}) {
+  const [popularMovies, moviesByCategory, categories] = await Promise.all([
     fetchPopularMovies(),
+    fetchMoviesByCategory(category ?? ''),
     fetchMoviesCategories(),
   ]);
 
@@ -24,7 +30,10 @@ export default async function MoviesCategoriesSection() {
         </div>
         <MoviesCategoriesList categories={categories} />
       </div>
-      <MoviesBentoGrid movies={popularMovies} categories={categories} />
+      <MoviesBentoGrid
+        movies={moviesByCategory ?? popularMovies}
+        categories={categories}
+      />
     </section>
   );
 }

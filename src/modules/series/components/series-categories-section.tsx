@@ -1,14 +1,20 @@
 import {
   fetchPopularSeries,
+  fetchSeriesByCategory,
   fetchSeriesCategories,
 } from '@/modules/series/api';
 import { IconCategoryFilled } from '@tabler/icons-react';
 import SeriesCategoriesList from './series-categories-list';
 import SeriesBentoGrid from './series-bento-grid';
 
-export default async function SeriesCategoriesSection() {
-  const [popularSeries, categories] = await Promise.all([
+export default async function SeriesCategoriesSection({
+  category,
+}: {
+  category?: string;
+}) {
+  const [popularSeries, seriesByCategory, categories] = await Promise.all([
     fetchPopularSeries(),
+    fetchSeriesByCategory(category ?? ''),
     fetchSeriesCategories(),
   ]);
 
@@ -24,7 +30,10 @@ export default async function SeriesCategoriesSection() {
         </div>
         <SeriesCategoriesList categories={categories} />
       </div>
-      <SeriesBentoGrid series={popularSeries} categories={categories} />
+      <SeriesBentoGrid
+        series={seriesByCategory ?? popularSeries}
+        categories={categories}
+      />
     </section>
   );
 }
