@@ -9,7 +9,7 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen flex flex-col">
-      <Hero movie={movie} />
+      <Hero poster={movie} />
       <HomeMoviesSection />
       <div className="my-10 px-20 max-sm:px-10">
         <Divider />

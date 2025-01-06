@@ -8,7 +8,7 @@ export default async function Page() {
 
   return (
     <main className="min-h-screen flex flex-col">
-      <Hero movie={movie} />
+      <Hero poster={movie} />
       <MoviesCategoriesSection />
       <MoviesPageContent />
     </main>
