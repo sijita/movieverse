@@ -85,3 +85,13 @@ export const fetchNowPlayingMovies = async () => {
     return [];
   }
 };
+
+export const fetchMovieById = async (id: string) => {
+  try {
+    const { data } = await axios.get(`/movie/${id}?language=es-ES`);
+
+    return data;
+  } catch {
+    return;
+  }
+};

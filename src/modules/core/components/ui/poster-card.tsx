@@ -10,14 +10,16 @@ import { Serie } from '@/modules/series/types/serie';
 export default function PosterCard({
   poster,
   categories,
+  additionalClass,
 }: {
   poster: Movie | Serie;
   categories: { id: number; name: string }[];
+  additionalClass?: string;
 }) {
   return (
-    <div>
+    <div className={`${additionalClass}`}>
       <motion.div
-        className="w-60 h-[25rem] relative overflow-hidden rounded-xl group"
+        className="relative overflow-hidden rounded-xl group aspect-[2/3] h-full"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.2 }}
@@ -74,7 +76,11 @@ export default function PosterCard({
           </div>
           <div className="absolute inset-x-0 bottom-0 h-0 bg-gradient-to-t from-primary/80 to-primary/60 backdrop-blur-sm transition-all duration-300 group-hover:h-1/3 flex items-center justify-center opacity-0 group-hover:opacity-100">
             <Link
-              href={`/posters/${poster?.id}`}
+              href={
+                'title' in poster
+                  ? `/movies/${poster?.id}`
+                  : `/series/${poster?.id}`
+              }
               className="rounded-full bg-white px-6 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-100 transition-colors"
             >
               Ver detalles

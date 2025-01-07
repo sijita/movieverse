@@ -12,7 +12,12 @@ export default function PostersRow({
   return (
     <div className="flex gap-5 w-full flex-nowrap overflow-x-scroll scrollbar-hide pb-5">
       {posters.map((poster, index) => (
-        <PosterCard key={index} poster={poster} categories={categories} />
+        <PosterCard
+          key={index}
+          poster={poster}
+          categories={categories}
+          additionalClass="h-[400px] max-h-[400px]"
+        />
       ))}
     </div>
   );
