@@ -1,8 +1,9 @@
 import {
+  fetchMovieById,
   fetchMovieCredits,
-  fetchRecommendationsByMovie,
+  fetchSimilarMovies,
 } from '@/modules/movies/[id]/api';
-import { fetchMovieById, fetchMoviesCategories } from '@/modules/movies/api';
+import { fetchMoviesCategories } from '@/modules/movies/api';
 import MovieDetails from '@/modules/movies/[id]/components/movie-details';
 
 export default async function Page({
@@ -10,17 +11,19 @@ export default async function Page({
 }: {
   params: { id: string };
 }) {
-  const movie = await fetchMovieById(id);
-  const movieCredits = await fetchMovieCredits(id);
-  const moviesRecommendations = await fetchRecommendationsByMovie(id);
-  const categories = await fetchMoviesCategories();
+  const [movie, credits, similars, categories] = await Promise.all([
+    fetchMovieById(id),
+    fetchMovieCredits(id),
+    fetchSimilarMovies(id),
+    fetchMoviesCategories(),
+  ]);
 
   return (
     <main className="min-h-screen">
       <MovieDetails
         movie={movie}
-        credits={movieCredits}
-        similars={moviesRecommendations}
+        credits={credits}
+        similars={similars}
         categories={categories}
       />
     </main>
