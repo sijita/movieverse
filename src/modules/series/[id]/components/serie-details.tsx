@@ -1,23 +1,28 @@
 'use client';
-import type { MovieDetails } from '@/modules/movies/types/movie';
-import type { MovieCredits } from '@/modules/movies/[id]/types/movie-credits';
-import type { MovieSimilars } from '@/modules/movies/[id]/types/movie-similars';
-import { IconCalendar, IconClock, IconStarFilled } from '@tabler/icons-react';
+import type { SerieDetails } from '@/modules/series/[id]/types/serie-details';
+import type { SerieCredits } from '@/modules/series/[id]/types/serie-credits';
+import type { SerieSimilars } from '@/modules/series/[id]/types/serie-similars';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Chip } from '@nextui-org/react';
-import MovieCast from './movie-cast';
-import SimilarMovies from './similar-movies';
+import {
+  IconCalendar,
+  IconNumber,
+  IconSection,
+  IconStarFilled,
+} from '@tabler/icons-react';
+import SerieCast from './serie-cast';
+import SimilarSeries from './similar-series';
 
-export default function MovieDetails({
-  movie,
+export default function SerieDetails({
+  serie,
   credits,
   similars,
   categories,
 }: {
-  movie: MovieDetails;
-  credits: MovieCredits[];
-  similars: MovieSimilars[];
+  serie: SerieDetails;
+  credits: SerieCredits[];
+  similars: SerieSimilars[];
   categories: { id: number; name: string }[];
 }) {
   return (
@@ -25,7 +30,7 @@ export default function MovieDetails({
       <header
         className="relative h-[50vh] bg-cover bg-center"
         style={{
-          backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`,
+          backgroundImage: `url(https://image.tmdb.org/t/p/original${serie.backdrop_path})`,
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent" />
@@ -40,8 +45,8 @@ export default function MovieDetails({
           >
             <div className="relative w-64 h-96 rounded-lg overflow-hidden shadow-2xl transition-transform duration-300 ease-in-out">
               <Image
-                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                alt={movie.title}
+                src={`https://image.tmdb.org/t/p/w500${serie.poster_path}`}
+                alt={serie.name}
                 className="w-full h-full object-cover"
                 width={500}
                 height={500}
@@ -56,13 +61,13 @@ export default function MovieDetails({
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                {movie.title}
+                {serie.name}
               </motion.h1>
               <Chip size="lg">
                 <div className="flex items-center gap-1">
                   <IconStarFilled className="text-yellow-400" size={20} />
                   <span className="text-2xl font-semibold">
-                    {movie.vote_average.toFixed(1)}
+                    {serie.vote_average.toFixed(1)}
                   </span>
                 </div>
               </Chip>
@@ -74,12 +79,19 @@ export default function MovieDetails({
               transition={{ duration: 0.5, delay: 0.3 }}
             >
               <div className="flex items-center gap-1">
-                <IconClock size={20} />
-                <span>{movie.runtime} min</span>
+                <div className="flex items-center gap-1">
+                  <IconNumber size={20} />
+                  <span>{serie.number_of_episodes} Episodios</span>
+                </div>
+                <span>-</span>
+                <div className="flex items-center gap-1">
+                  <IconSection size={20} />
+                  <span>{serie.number_of_seasons} Temporadas</span>
+                </div>
               </div>
               <div className="flex items-center gap-1">
                 <IconCalendar size={20} />
-                <span>{new Date(movie.release_date).getFullYear()}</span>
+                <span>{new Date(serie.first_air_date).getFullYear()}</span>
               </div>
             </motion.div>
             <motion.div
@@ -88,7 +100,7 @@ export default function MovieDetails({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              {movie.genres.map((genre) => (
+              {serie.genres.map((genre) => (
                 <Chip key={genre.id} color="primary" className="text-black">
                   {genre.name}
                 </Chip>
@@ -100,14 +112,14 @@ export default function MovieDetails({
               transition={{ duration: 0.5, delay: 0.5 }}
               className="text-gray-200 leading-relaxed text-lg mt-3"
             >
-              {movie.overview}
+              {serie.overview}
             </motion.p>
           </div>
         </article>
       </section>
       <section className="px-10 sm:px-20 pt-14 pb-5 flex flex-col gap-10">
-        <MovieCast credits={credits} />
-        <SimilarMovies similars={similars} categories={categories} />
+        <SerieCast credits={credits} />
+        <SimilarSeries similars={similars} categories={categories} />
       </section>
     </section>
   );

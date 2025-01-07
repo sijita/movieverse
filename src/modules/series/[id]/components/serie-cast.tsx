@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
-import type { MovieCredits } from '@/modules/movies/[id]/types/movie-credits';
 import { IconUsersGroup } from '@tabler/icons-react';
 import Image from 'next/image';
+import type { SerieCredits } from '@/modules/series/[id]/types/serie-credits';
 
-export default function MovieCast({ credits }: { credits: MovieCredits[] }) {
+export default function SerieCast({ credits }: { credits: SerieCredits[] }) {
   return (
     <motion.article
       className="flex flex-col gap-5"

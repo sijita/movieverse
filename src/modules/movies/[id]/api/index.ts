@@ -10,19 +10,6 @@ export const fetchMovieById = async (id: string) => {
   }
 };
 
-export const fetchRecommendationsByMovie = async (id: string) => {
-  try {
-    const { data } = await axios.get(
-      `/movie/${id}/recommendations?language=es-ES&page=1`
-    );
-    const recommendations = data.results;
-
-    return recommendations;
-  } catch {
-    return {};
-  }
-};
-
 export const fetchSimilarMovies = async (id: string) => {
   try {
     const { data } = await axios.get(
