@@ -3,7 +3,7 @@ import { Button } from '@nextui-org/react';
 import { IconClockFilled } from '@tabler/icons-react';
 import { useState } from 'react';
 import { Serie } from '@/modules/series/types/serie';
-import PosterCard from '@/modules/core/components/ui/poster-card';
+import PosterCard from '@/modules/core/components/poster-card';
 
 export default function OnAirSeriesSection({
   nowPlayingSeries,

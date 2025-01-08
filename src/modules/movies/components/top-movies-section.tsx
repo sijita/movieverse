@@ -1,6 +1,6 @@
-import {  IconThumbUpFilled } from '@tabler/icons-react';
+import { IconThumbUpFilled } from '@tabler/icons-react';
 import { Movie } from '@/modules/movies/types/movie';
-import PostersRow from '../../core/components/ui/posters-row';
+import PostersRow from '@/modules/core/components/posters-row';
 
 export default function TopMoviesSection({
   topMovies,

@@ -1,9 +1,9 @@
 'use client';
 import { IconClockFilled } from '@tabler/icons-react';
 import { Movie } from '@/modules/movies/types/movie';
-import PosterCard from '@/modules/core/components/ui/poster-card';
 import { Button } from '@nextui-org/react';
 import { useState } from 'react';
+import PosterCard from '@/modules/core/components/poster-card';
 
 export default function NowPlayingMoviesSection({
   nowPlayingMovies,

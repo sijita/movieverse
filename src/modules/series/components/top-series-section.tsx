@@ -1,6 +1,6 @@
-import PostersRow from '@/modules/core/components/ui/posters-row';
 import { IconThumbUpFilled } from '@tabler/icons-react';
 import { Serie } from '@/modules/series/types/serie';
+import PostersRow from '@/modules/core/components/posters-row';
 
 export default function TopSeriesSection({
   topSeries,

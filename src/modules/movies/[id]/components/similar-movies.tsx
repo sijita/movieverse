@@ -2,10 +2,10 @@
 import { motion } from 'framer-motion';
 import type { MovieSimilars } from '@/modules/movies/[id]/types/movie-similars';
 import { useState } from 'react';
-import PosterCard from '@/modules/core/components/ui/poster-card';
 import type { Movie } from '@/modules/movies/types/movie';
 import { Button } from '@nextui-org/react';
 import { IconKeyframesFilled } from '@tabler/icons-react';
+import PosterCard from '@/modules/core/components/poster-card';
 
 export default function SimilarMovies({
   similars,

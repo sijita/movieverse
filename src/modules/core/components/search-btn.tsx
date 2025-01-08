@@ -12,7 +12,7 @@ import { Movie } from '@/modules/movies/types/movie';
 import { Serie } from '@/modules/series/types/serie';
 import PosterCard from './poster-card';
 import { useEffect, useState } from 'react';
-import { searchAction } from '../../actions';
+import { searchAction } from '@/modules/core/actions';
 
 export default function SearchBtn() {
   const { handleSearch, searchParams } = useSearch();
@@ -104,7 +104,10 @@ export default function SearchBtn() {
                     ?.filter((result) => result && result.poster_path)
                     ?.map((result: Movie | Serie, i) => (
                       <div key={i} className="w-full">
-                        <PosterCard poster={result} onCloseSearchModal={onClose} />
+                        <PosterCard
+                          poster={result}
+                          onCloseSearchModal={onClose}
+                        />
                       </div>
                     ))}
                 </div>

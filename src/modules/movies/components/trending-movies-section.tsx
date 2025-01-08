@@ -2,7 +2,7 @@
 import { IconFlame } from '@tabler/icons-react';
 import TrendingMoviesTab from './trending-movies-tab';
 import { Movie } from '@/modules/movies/types/movie';
-import PostersRow from '@/modules/core/components/ui/posters-row';
+import PostersRow from '@/modules/core/components/posters-row';
 
 export default function TrendingMoviesSection({
   trendingMovies,

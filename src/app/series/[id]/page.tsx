@@ -8,10 +8,11 @@ import {
 import { fetchSeriesCategories } from '@/modules/series/api';
 
 export default async function Page({
-  params: { id },
+  params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
+  const { id } = await params;
   const [serie, credits, similars, categories, trailer] = await Promise.all([
     fetchSerieById(id),
     fetchSerieCredits(id),

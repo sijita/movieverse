@@ -6,9 +6,9 @@ import SeriesPageContent from '@/modules/series/components/series-page-content';
 export default async function Page({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | undefined };
+  searchParams: Promise<{ [key: string]: string | undefined }>;
 }) {
-  const { category } = searchParams;
+  const { category } = await searchParams;
   const serie = await fetchRandomSerie();
 
   return (

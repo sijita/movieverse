@@ -12,8 +12,8 @@ import {
 import { IconMovie, IconUser } from '@tabler/icons-react';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
-import SearchBtn from './search-btn';
 import Link from 'next/link';
+import SearchBtn from '@/modules/core/components/search-btn';
 
 export default function MyNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

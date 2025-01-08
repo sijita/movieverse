@@ -1,8 +1,8 @@
 'use client';
 import { IconFlame } from '@tabler/icons-react';
 import TrendingSeriesTab from './trending-series-tab';
-import PostersRow from '@/modules/core/components/ui/posters-row';
 import { Serie } from '@/modules/series/types/serie';
+import PostersRow from '@/modules/core/components/posters-row';
 
 export default function TrendingSeriesSection({
   trendingSeries,

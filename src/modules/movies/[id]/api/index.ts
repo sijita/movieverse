@@ -33,3 +33,16 @@ export const fetchMovieCredits = async (id: string) => {
     return {};
   }
 };
+
+export const fetchMovieTrailer = async (id: string) => {
+  try {
+    const { data } = await axios.get(
+      `/movie/${id}/videos?language=es-ES&page=1`
+    );
+    const movieTrailer = data.results[0].key;
+
+    return movieTrailer;
+  } catch {
+    return '';
+  }
+};

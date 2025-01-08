@@ -1,11 +1,11 @@
 'use client';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import PosterCard from '@/modules/core/components/ui/poster-card';
 import { Button } from '@nextui-org/react';
 import type { Serie } from '@/modules/series/types/serie';
 import type { SerieSimilars } from '@/modules/series/[id]/types/serie-similars';
 import { IconKeyframesFilled } from '@tabler/icons-react';
+import PosterCard from '@/modules/core/components/poster-card';
 
 export default function SimilarSeries({
   similars,

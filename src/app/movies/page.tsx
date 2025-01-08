@@ -6,9 +6,9 @@ import MoviesPageContent from '@/modules/movies/components/movies-page-content';
 export default async function Page({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | undefined };
+  searchParams: Promise<{ [key: string]: string | undefined }>;
 }) {
-  const { category } = searchParams;
+  const { category } = await searchParams;
   const movie = await fetchRandomMovie();
 
   return (
