@@ -5,7 +5,7 @@ import type { SerieCredits } from '@/modules/series/[id]/types/serie-credits';
 
 export default function SerieCast({ credits }: { credits: SerieCredits[] }) {
   return (
-    <motion.article
+    <motion.div
       className="flex flex-col gap-5"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -33,6 +33,6 @@ export default function SerieCast({ credits }: { credits: SerieCredits[] }) {
             </div>
           ))}
       </div>
-    </motion.article>
+    </motion.div>
   );
 }

@@ -1,4 +1,4 @@
-import { Serie } from '../types/serie';
+import { Serie } from '../../types/serie';
 import SerieBentoCard from './serie-bento-card';
 
 export default function SeriesBentoGrid({

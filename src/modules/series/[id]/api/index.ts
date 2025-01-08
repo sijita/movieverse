@@ -31,3 +31,14 @@ export const fetchSimilarSeries = async (id: string) => {
     return {};
   }
 };
+
+export const fetchSerieTrailer = async (id: string) => {
+  try {
+    const { data } = await axios.get(`/tv/${id}/videos?language=es-ES&page=1`);
+    const serieTrailer = data.results[0].key;
+
+    return serieTrailer;
+  } catch {
+    return '';
+  }
+};

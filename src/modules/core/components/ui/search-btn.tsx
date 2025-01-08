@@ -104,7 +104,7 @@ export default function SearchBtn() {
                     ?.filter((result) => result && result.poster_path)
                     ?.map((result: Movie | Serie, i) => (
                       <div key={i} className="w-full">
-                        <PosterCard poster={result} categories={[]} />
+                        <PosterCard poster={result} onCloseSearchModal={onClose} />
                       </div>
                     ))}
                 </div>

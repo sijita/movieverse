@@ -4,29 +4,62 @@ import type { SerieCredits } from '@/modules/series/[id]/types/serie-credits';
 import type { SerieSimilars } from '@/modules/series/[id]/types/serie-similars';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { Chip } from '@nextui-org/react';
+import {
+  Button,
+  Chip,
+  Modal,
+  ModalContent,
+  useDisclosure,
+} from '@nextui-org/react';
 import {
   IconCalendar,
-  IconNumber,
+  IconHeart,
+  IconPlayerPlayFilled,
   IconSection,
   IconStarFilled,
 } from '@tabler/icons-react';
 import SerieCast from './serie-cast';
 import SimilarSeries from './similar-series';
+import Link from 'next/link';
 
 export default function SerieDetails({
   serie,
   credits,
   similars,
   categories,
+  trailer,
 }: {
   serie: SerieDetails;
   credits: SerieCredits[];
   similars: SerieSimilars[];
   categories: { id: number; name: string }[];
+  trailer: string;
 }) {
+  const { onOpen, onOpenChange, isOpen } = useDisclosure();
+
   return (
     <section>
+      {trailer?.length > 0 && (
+        <Modal
+          isOpen={isOpen}
+          onOpenChange={onOpenChange}
+          scrollBehavior="inside"
+          size="3xl"
+        >
+          <ModalContent className="sm:max-w-[800px] p-0">
+            <div className="aspect-video">
+              <iframe
+                width="100%"
+                height="100%"
+                src={`https://www.youtube.com/embed/${trailer}`}
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </ModalContent>
+        </Modal>
+      )}
       <header
         className="relative h-[50vh] bg-cover bg-center"
         style={{
@@ -43,7 +76,7 @@ export default function SerieDetails({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="relative w-64 h-96 rounded-lg overflow-hidden shadow-2xl transition-transform duration-300 ease-in-out">
+            <div className="relative max-[350px]:w-full w-64 h-96 rounded-lg overflow-hidden shadow-2xl transition-transform duration-300 ease-in-out">
               <Image
                 src={`https://image.tmdb.org/t/p/w500${serie.poster_path}`}
                 alt={serie.name}
@@ -73,24 +106,22 @@ export default function SerieDetails({
               </Chip>
             </div>
             <motion.div
-              className="flex items-center gap-4"
+              className="flex items-center gap-4 flex-wrap"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              <div className="flex items-center gap-1">
-                <div className="flex items-center gap-1">
-                  <IconNumber size={20} />
-                  <span>{serie.number_of_episodes} Episodios</span>
-                </div>
+              <div className="flex items-center gap-1 truncate">
+                <IconSection size={20} className="text-primary flex-shrink-0" />
+                <span>{serie.number_of_seasons} Temporadas</span>
                 <span>-</span>
-                <div className="flex items-center gap-1">
-                  <IconSection size={20} />
-                  <span>{serie.number_of_seasons} Temporadas</span>
-                </div>
+                <span>{serie.number_of_episodes} Episodios</span>
               </div>
               <div className="flex items-center gap-1">
-                <IconCalendar size={20} />
+                <IconCalendar
+                  size={20}
+                  className="text-primary flex-shrink-0"
+                />
                 <span>{new Date(serie.first_air_date).getFullYear()}</span>
               </div>
             </motion.div>
@@ -101,7 +132,12 @@ export default function SerieDetails({
               transition={{ duration: 0.5, delay: 0.4 }}
             >
               {serie.genres.map((genre) => (
-                <Chip key={genre.id} color="primary" className="text-black">
+                <Chip
+                  key={genre.id}
+                  color="primary"
+                  className="bg-white/20 text-white text-xs"
+                  size="sm"
+                >
                   {genre.name}
                 </Chip>
               ))}
@@ -114,13 +150,42 @@ export default function SerieDetails({
             >
               {serie.overview}
             </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="flex items-center gap-2 flex-wrap"
+            >
+              <Button
+                className="text-md text-black font-semibold uppercase max-xl:w-full max-sm:flex-1"
+                radius="full"
+                color="primary"
+                href={serie.homepage}
+                as={Link}
+                target="_blank"
+              >
+                <IconPlayerPlayFilled size={20} />
+              </Button>
+              {trailer?.length > 0 && (
+                <Button
+                  className="text-primary max-sm:flex-1"
+                  onPress={() => onOpen()}
+                  radius="full"
+                >
+                  Ver trailer
+                </Button>
+              )}
+              <Button variant="flat" radius="full" isIconOnly>
+                <IconHeart size={20} className="flex-shrink-0" />
+              </Button>
+            </motion.div>
           </div>
         </article>
       </section>
-      <section className="px-10 sm:px-20 pt-14 pb-5 flex flex-col gap-10">
+      <article className="px-10 sm:px-20 pt-14 pb-5 flex flex-col gap-10">
         <SerieCast credits={credits} />
         <SimilarSeries similars={similars} categories={categories} />
-      </section>
+      </article>
     </section>
   );
 }

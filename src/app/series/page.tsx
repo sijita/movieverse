@@ -1,6 +1,6 @@
 import Hero from '@/modules/core/components/ui/hero';
 import { fetchRandomSerie } from '@/modules/series/api';
-import SeriesCategoriesSection from '@/modules/series/components/series-categories-section';
+import SeriesCategoriesSection from '@/modules/series/components/categories/series-categories-section';
 import SeriesPageContent from '@/modules/series/components/series-page-content';
 
 export default async function Page({

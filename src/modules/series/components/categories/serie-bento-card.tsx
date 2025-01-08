@@ -1,6 +1,6 @@
 'use client';
 import { Chip } from '@nextui-org/react';
-import { Serie } from '../types/serie';
+import { Serie } from '../../types/serie';
 import { motion } from 'framer-motion';
 import { IconCalendar, IconStar } from '@tabler/icons-react';
 import Image from 'next/image';
@@ -79,7 +79,7 @@ export default function SerieBentoCard({
         </div>
         <div className="absolute inset-x-0 bottom-0 h-0 bg-gradient-to-t from-primary/80 to-primary/60 backdrop-blur-sm transition-all duration-300 group-hover:h-1/3 flex items-center justify-center opacity-0 group-hover:opacity-100">
           <Link
-            href={`/movies/${serie?.id}`}
+            href={`/series/${serie?.id}`}
             className="rounded-full bg-white px-6 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-100 transition-colors"
           >
             Ver detalles

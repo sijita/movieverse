@@ -11,10 +11,12 @@ export default function PosterCard({
   poster,
   categories,
   additionalClass,
+  onCloseSearchModal,
 }: {
   poster: Movie | Serie;
-  categories: { id: number; name: string }[];
+  categories?: { id: number; name: string }[];
   additionalClass?: string;
+  onCloseSearchModal?: () => void;
 }) {
   return (
     <div className={`${additionalClass}`}>
@@ -62,7 +64,8 @@ export default function PosterCard({
                       }).format(new Date(poster?.first_air_date))}
                 </span>
               </div>
-              {poster?.genre_ids &&
+              {categories &&
+                poster?.genre_ids &&
                 poster?.genre_ids.slice(0, 1).map((genre, i) => (
                   <Chip
                     key={i}
@@ -82,6 +85,7 @@ export default function PosterCard({
                   : `/series/${poster?.id}`
               }
               className="rounded-full bg-white px-6 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-100 transition-colors"
+              onClick={onCloseSearchModal}
             >
               Ver detalles
             </Link>
