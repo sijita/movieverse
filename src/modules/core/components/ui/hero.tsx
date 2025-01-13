@@ -7,6 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { funnelDisplay } from '../../styles/fonts/fonts';
+import { motion } from 'framer-motion';
 
 export default function Hero({ poster }: { poster: Movie | Serie }) {
   const pathname = usePathname();
@@ -30,19 +31,32 @@ export default function Hero({ poster }: { poster: Movie | Serie }) {
       <div className="absolute inset-0 h-full w-full bg-primary bg-[radial-gradient(#96e600_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_60%,transparent_100%)]"></div>
       {isHomePage && (
         <div className="flex flex-col items-center gap-5 sm:w-1/2 w-full">
-          <h1
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
             className={`text-5xl lg:text-7xl text-center font-black text-white transform -rotate-1 drop-shadow-md ${funnelDisplay.className}`}
           >
             Bienvenido a MovieVerse
-          </h1>
-          <div className="bg-black p-2 transform rotate-1 w-auto sm:w-fit">
+          </motion.h1>
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="bg-black p-2 transform rotate-1 w-auto sm:w-fit z-50"
+          >
             <p className="text-2xl text-white font-semibold">
               Información acerca de películas y series
             </p>
-          </div>
+          </motion.div>
         </div>
       )}
-      <div className="flex flex-col items-center gap-6 sm:w-1/2 w-full">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="flex flex-col items-center gap-6 sm:w-1/2 w-full"
+      >
         <div className="flex flex-wrap items-center gap-3">
           <h3 className="text-4xl font-black transform -rotate-1 drop-shadow-md">
             {posterTitle}
@@ -73,7 +87,7 @@ export default function Hero({ poster }: { poster: Movie | Serie }) {
             </Button>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

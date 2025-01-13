@@ -20,13 +20,14 @@ export default function PosterCard({
   onCloseSearchModal?: () => void;
 }) {
   return (
-    <div className={`${additionalClass}`}>
-      <motion.div
-        className="relative overflow-hidden rounded-sm group aspect-[2/3] border-2 border-black p-2 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all h-full"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.2 }}
-      >
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: 0.3 }}
+      viewport={{ once: true }}
+      className={`${additionalClass}`}
+    >
+      <div className="relative overflow-hidden rounded-sm group aspect-[2/3] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all h-full">
         <PosterCalificationChip calification={poster?.vote_average ?? 0} />
         <div>
           <Image
@@ -90,7 +91,7 @@ export default function PosterCard({
             </Button>
           </div>
         </div>
-      </motion.div>
-    </div>
+      </div>
+    </motion.div>
   );
 }

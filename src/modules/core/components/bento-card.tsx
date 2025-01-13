@@ -2,7 +2,6 @@
 import Image from 'next/image';
 import { IconCalendar, IconLink } from '@tabler/icons-react';
 import { Button, Chip } from '@nextui-org/react';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import PosterCalificationChip from '@/modules/core/components/poster-calification-chip';
 import type { Movie } from '@/modules/movies/types/movie';
@@ -18,16 +17,13 @@ export default function BentoCard({
   categories: { id: number; name: string }[];
 }) {
   return (
-    <motion.div
+    <div
       key={i}
-      className={`relative overflow-hidden rounded-sm group border-2 border-black p-2 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all ${
+      className={`relative overflow-hidden rounded-sm group hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all ${
         poster && 'title' in poster
           ? (i === 1 || i === 5) && 'md:col-span-2 col-span-1'
           : (i === 0 || i === 6) && 'md:col-span-2 col-span-1'
       }`}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.2 }}
     >
       <PosterCalificationChip calification={poster?.vote_average ?? 0} />
       <div>
@@ -89,6 +85,6 @@ export default function BentoCard({
           </Button>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
