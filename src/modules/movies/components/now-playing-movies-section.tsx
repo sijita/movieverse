@@ -27,7 +27,7 @@ export default function NowPlayingMoviesSection({
         subtitle="Estrenos"
         rotate="rotate-1"
       />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
         {nowPlayingMovies.slice(0, showMore ? 20 : 10).map((movie, i) => (
           <div key={i} className="w-full">
             <PosterCard poster={movie} categories={categories} />
