@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import TrendingMoviesSection from './trending-movies-section';
 import NowPlayingMoviesSection from './now-playing-movies-section';
 import {
@@ -7,6 +6,7 @@ import {
   fetchTrendingMovies,
 } from '@/modules/movies/api';
 import { cookies } from 'next/headers';
+import SectionTitle from '@/modules/core/components/section-title';
 
 export default async function HomeMoviesSection() {
   const cookieStore = await cookies();
@@ -15,21 +15,13 @@ export default async function HomeMoviesSection() {
     fetchTrendingMovies(
       (cookieStore.get('trendingMovies')?.value as 'day' | 'week') ?? 'week'
     ),
-
     fetchNowPlayingMovies(),
     fetchMoviesCategories(),
   ]);
 
   return (
-    <section className="px-10 sm:px-20 py-5 flex flex-col gap-10">
-      <div>
-        <Link
-          href="/movies"
-          className="text-4xl font-bold text-primary hover:text-white transition-colors"
-        >
-          Películas
-        </Link>
-      </div>
+    <section className="relative overflow-hidden px-10 sm:px-20 py-14 flex flex-col gap-10 bg-[#eaeaea]">
+      <SectionTitle title="Películas" href="/movies" />
       <TrendingMoviesSection
         trendingMovies={trendingMovies}
         categories={categories}

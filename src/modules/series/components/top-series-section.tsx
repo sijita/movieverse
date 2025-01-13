@@ -1,6 +1,7 @@
-import { IconThumbUpFilled } from '@tabler/icons-react';
 import { Serie } from '@/modules/series/types/serie';
 import PostersRow from '@/modules/core/components/posters-row';
+import SectionSubtitle from '@/modules/core/components/section-subtitle';
+import { IconThumbUpFilled } from '@tabler/icons-react';
 
 export default function TopSeriesSection({
   topSeries,
@@ -11,10 +12,16 @@ export default function TopSeriesSection({
 }) {
   return (
     <section className="flex flex-col gap-5">
-      <div className="flex items-center gap-3">
-        <IconThumbUpFilled className="text-primary flex-shrink-0" size={25} />
-        <h2 className="text-3xl font-semibold">Mejor votadas</h2>
-      </div>
+      <SectionSubtitle
+        icon={
+          <IconThumbUpFilled
+            className="text-white fill-white flex-shrink-0"
+            size={25}
+          />
+        }
+        subtitle="Mejor votadas"
+        rotate="-rotate-2"
+      />
       <PostersRow posters={topSeries} categories={categories} />
     </section>
   );

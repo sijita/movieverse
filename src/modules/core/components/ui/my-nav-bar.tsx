@@ -32,17 +32,13 @@ export default function MyNavbar() {
       label: 'Series',
       href: '/series',
     },
-    {
-      label: 'Explorar',
-      href: '#',
-    },
   ];
 
   return (
     <Navbar
-      className="p-5 bg-transparent absolute flex"
+      className="p-3 bg-black flex"
       classNames={{
-        menu: 'flex flex-col items-center justify-center top-0 bg-default rounded-b-2xl',
+        menu: 'flex flex-col items-center justify-center top-0 bg-black',
         wrapper: 'max-w-full',
       }}
       onMenuOpenChange={setIsMenuOpen}
@@ -54,30 +50,34 @@ export default function MyNavbar() {
           aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
           className="lg:hidden"
         />
-        <NavbarBrand className="flex items-center gap-3">
-          <IconMovie className="text-primary" />
-          <Link className="fontt-bold text-inherit" href="/">
-            <p className="font-bold text-inherit text-2xl">MovieVerse</p>
-          </Link>
+        <NavbarBrand className="grow-0">
+          <Button
+            className="font-bold text-inherit text-2xl transform -rotate-2 hover:rotate-0 bg-primary p-2 rounded-sm text-black"
+            href="/"
+            as={Link}
+            startContent={
+              <IconMovie
+                className="flex-shrink-0 transform rotate-6"
+                size={25}
+              />
+            }
+          >
+            MovieVerse
+          </Button>
         </NavbarBrand>
       </NavbarContent>
-      <NavbarContent
-        className="hidden lg:flex gap-5 px-10 rounded-full bg-default"
-        justify="center"
-      >
+      <NavbarContent className="flex items-center gap-5" justify="center">
         {navItems.map((item, i) => (
-          <NavbarItem key={i} isActive={item.href === pathname}>
-            <Link
-              className={`text-lg hover:text-primary ${
-                pathname === item.href
-                  ? 'text-primary font-semibold'
-                  : 'text-white'
-              }`}
-              href={item.href}
-            >
-              {item.label}
-            </Link>
-          </NavbarItem>
+          <Link
+            key={i}
+            className={`${
+              pathname === item.href &&
+              'font-bold bg-white text-black transform rotate-2'
+            } font-bold hover:bg-white hover:text-black transition-colors p-2 transform hover:rotate-2 rounded-sm`}
+            href={item.href}
+          >
+            {item.label}
+          </Link>
         ))}
       </NavbarContent>
       <NavbarContent className="hidden sm:flex" justify="end">
@@ -87,12 +87,11 @@ export default function MyNavbar() {
         <NavbarItem>
           <Button
             color="primary"
-            className="text-black"
-            radius="full"
+            className="text-black bg-primary rounded-sm font-bold transform hover:rotate-2 hover:scale-105 transition-transform"
             onPress={() => {}}
-            isIconOnly
+            endContent={<IconUser stroke={2.5} size={17} />}
           >
-            <IconUser size={20} />
+            Iniciar sesión
           </Button>
         </NavbarItem>
       </NavbarContent>

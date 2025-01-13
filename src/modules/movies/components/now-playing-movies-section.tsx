@@ -1,9 +1,10 @@
 'use client';
-import { IconClockFilled } from '@tabler/icons-react';
 import { Movie } from '@/modules/movies/types/movie';
-import { Button } from '@nextui-org/react';
 import { useState } from 'react';
 import PosterCard from '@/modules/core/components/poster-card';
+import ShowMoreBtn from '@/modules/core/components/show-more-btn';
+import SectionSubtitle from '@/modules/core/components/section-subtitle';
+import { IconClockFilled } from '@tabler/icons-react';
 
 export default function NowPlayingMoviesSection({
   nowPlayingMovies,
@@ -16,10 +17,16 @@ export default function NowPlayingMoviesSection({
 
   return (
     <section className="flex flex-col gap-5">
-      <div className="flex items-center gap-3">
-        <IconClockFilled className="text-primary flex-shrink-0" size={25} />
-        <h2 className="text-3xl font-semibold">Últimos estrenos</h2>
-      </div>
+      <SectionSubtitle
+        icon={
+          <IconClockFilled
+            className="text-white fill-white flex-shrink-0"
+            size={25}
+          />
+        }
+        subtitle="Estrenos"
+        rotate="rotate-1"
+      />
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-5">
         {nowPlayingMovies.slice(0, showMore ? 20 : 10).map((movie, i) => (
           <div key={i} className="w-full">
@@ -27,13 +34,10 @@ export default function NowPlayingMoviesSection({
           </div>
         ))}
       </div>
-      <Button
-        onPress={() => setShowMore(!showMore)}
-        color="primary"
-        className="w-full text-black font-medium"
-      >
-        {showMore ? 'Mostrar menos' : 'Mostrar más'}
-      </Button>
+      <ShowMoreBtn
+        showMore={showMore}
+        setShowMore={() => setShowMore(!showMore)}
+      />
     </section>
   );
 }

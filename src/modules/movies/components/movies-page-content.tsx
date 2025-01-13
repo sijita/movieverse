@@ -23,7 +23,7 @@ export default async function MoviesPageContent() {
     ]);
 
   return (
-    <section className="px-10 sm:px-20 py-5 flex flex-col gap-10">
+    <section className="px-10 sm:px-20 py-14 flex flex-col gap-10 bg-[#eaeaea]">
       <TrendingMoviesSection
         trendingMovies={trendingMovies}
         categories={categories}

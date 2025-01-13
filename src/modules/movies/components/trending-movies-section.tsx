@@ -1,8 +1,8 @@
 'use client';
-import { IconFlame } from '@tabler/icons-react';
-import TrendingMoviesTab from './trending-movies-tab';
 import { Movie } from '@/modules/movies/types/movie';
 import PostersRow from '@/modules/core/components/posters-row';
+import TrendingTabs from '@/modules/core/components/trending-tabs';
+import TrendingTitle from '@/modules/core/components/trending-title';
 
 export default function TrendingMoviesSection({
   trendingMovies,
@@ -14,14 +14,8 @@ export default function TrendingMoviesSection({
   return (
     <section className="flex flex-col gap-5">
       <div className="flex flex-wrap justify-between gap-5">
-        <div className="flex items-center gap-3">
-          <IconFlame
-            className="text-primary fill-primary flex-shrink-0"
-            size={25}
-          />
-          <h2 className="text-3xl font-semibold">Películas en tendencia</h2>
-        </div>
-        <TrendingMoviesTab />
+        <TrendingTitle title="Peliculas" />
+        <TrendingTabs type="movie" />
       </div>
       <PostersRow posters={trendingMovies} categories={categories} />
     </section>

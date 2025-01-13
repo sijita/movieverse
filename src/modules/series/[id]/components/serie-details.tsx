@@ -50,12 +50,12 @@ export default function SerieDetails({
       <div className="px-10 sm:px-20 -mt-[200px] relative z-10">
         <div className="flex flex-col md:flex-row gap-8">
           <motion.div
-            className="flex-shrink-0"
+            className="flex-shrink-0 border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="relative max-[350px]:w-full w-64 h-96 rounded-lg overflow-hidden shadow-2xl transition-transform duration-300 ease-in-out">
+            <div className="relative max-[350px]:w-full w-64 h-96 rounded-sm overflow-hidden shadow-2xl transition-transform duration-300 ease-in-out">
               <Image
                 src={`https://image.tmdb.org/t/p/w500${serie?.poster_path}`}
                 alt={serie?.name}
@@ -81,10 +81,10 @@ export default function SerieDetails({
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <Chip size="lg">
+                <Chip className="rounded-sm" size="lg">
                   <div className="flex items-center gap-1">
                     <IconStarFilled className="text-yellow-400" size={20} />
-                    <span className="text-2xl font-semibold">
+                    <span className="text-2xl font-bold font-mono">
                       {serie?.vote_average.toFixed(1)}
                     </span>
                   </div>
@@ -120,7 +120,7 @@ export default function SerieDetails({
               {serie?.genres.map((genre) => (
                 <Chip
                   key={genre.id}
-                  className="bg-white/20 text-white text-xs"
+                  className="bg-white/20 text-white text-xs rounded-sm"
                   size="sm"
                 >
                   {genre.name}
@@ -142,7 +142,7 @@ export default function SerieDetails({
               className="flex items-center gap-2 flex-wrap"
             >
               <Button
-                className="text-md text-black font-semibold uppercase max-sm:flex-1"
+                className="rounded-sm text-md text-black font-bold max-sm:flex-1 transform -rotate-2 hover:rotate-0 hover:scale-90 transition-transform duration-300 ease-in-out"
                 radius="full"
                 color="primary"
                 href={serie?.homepage}
@@ -153,7 +153,7 @@ export default function SerieDetails({
               </Button>
               {trailer?.length > 0 && (
                 <Button
-                  className="text-primary max-sm:flex-1"
+                  className="rounded-sm max-sm:flex-1 bg-white text-black p-2 transform rotate-2 w-fit font-bold hover:rotate-0"
                   onPress={() => onOpen()}
                   radius="full"
                 >
@@ -167,7 +167,7 @@ export default function SerieDetails({
           </div>
         </div>
       </div>
-      <div className="px-10 sm:px-20 pt-14 pb-5 flex flex-col gap-10">
+      <div className="px-10 sm:px-20 pt-14 pb-10 flex flex-col gap-10 bg-[#baff29]">
         <SerieCast credits={credits} />
         <SimilarSeries similars={similars} categories={categories} />
       </div>

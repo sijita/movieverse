@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { IconUsersGroup } from '@tabler/icons-react';
 import Image from 'next/image';
 import type { SerieCredits } from '@/modules/series/[id]/types/serie-credits';
+import SectionSubtitle from '@/modules/core/components/section-subtitle';
 
 export default function SerieCast({ credits }: { credits: SerieCredits[] }) {
   return (
@@ -11,10 +12,16 @@ export default function SerieCast({ credits }: { credits: SerieCredits[] }) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.6 }}
     >
-      <div className="flex items-center gap-3">
-        <IconUsersGroup className="text-primary fill-primary flex-shrink-0" size={25} />
-        <h2 className="text-3xl font-semibold">Reparto</h2>
-      </div>
+      <SectionSubtitle
+        icon={
+          <IconUsersGroup
+            className="text-white fill-white flex-shrink-0"
+            size={25}
+          />
+        }
+        subtitle="Reparto"
+        rotate="-rotate-2"
+      />
       <div className="flex items-center gap-6 overflow-auto pb-5">
         {credits
           .filter((credit) => credit.profile_path)
@@ -28,8 +35,8 @@ export default function SerieCast({ credits }: { credits: SerieCredits[] }) {
                 height={278}
                 loading="lazy"
               />
-              <p className="font-semibold">{credit.name}</p>
-              <p className="text-sm text-gray-400">{credit.character}</p>
+              <p className="font-semibold text-black">{credit.name}</p>
+              <p className="text-sm text-gray-800">{credit.character}</p>
             </div>
           ))}
       </div>

@@ -2,10 +2,11 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Movie } from '@/modules/movies/types/movie';
-import { IconCalendar, IconStar } from '@tabler/icons-react';
-import { Chip } from '@nextui-org/react';
+import { IconCalendar, IconLink } from '@tabler/icons-react';
+import { Button, Chip } from '@nextui-org/react';
 import Link from 'next/link';
 import { Serie } from '@/modules/series/types/serie';
+import PosterCalificationChip from './poster-calification-chip';
 
 export default function PosterCard({
   poster,
@@ -21,19 +22,12 @@ export default function PosterCard({
   return (
     <div className={`${additionalClass}`}>
       <motion.div
-        className="relative overflow-hidden rounded-xl group aspect-[2/3] h-full"
+        className="relative overflow-hidden rounded-sm group aspect-[2/3] border-2 border-black p-2 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all h-full"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.2 }}
       >
-        <Chip size="sm" className="absolute top-3 right-3 space-x-2 z-10 p-1">
-          <div className="flex items-center gap-1">
-            <IconStar size={13} className="text-yellow-400 fill-yellow-400" />
-            <span className="text-white/80 text-sm font-semibold">
-              {(poster?.vote_average ?? 0).toFixed(1)}
-            </span>
-          </div>
-        </Chip>
+        <PosterCalificationChip calification={poster?.vote_average ?? 0} />
         <div>
           <Image
             src={`https://image.tmdb.org/t/p/w500${poster?.poster_path}`}
@@ -51,7 +45,10 @@ export default function PosterCard({
             </h3>
             <div className="flex flex-wrap gap-4">
               <div className="flex items-center gap-1">
-                <IconCalendar size={15} className="flex-shrink-0" />
+                <IconCalendar
+                  size={15}
+                  className="text-primary flex-shrink-0"
+                />
                 <span className="text-sm text-gray-300">
                   {'release_date' in poster
                     ? poster?.release_date &&
@@ -69,7 +66,7 @@ export default function PosterCard({
                 poster?.genre_ids.slice(0, 1).map((genre, i) => (
                   <Chip
                     key={i}
-                    className="bg-white/20 text-white text-xs"
+                    className="bg-white/20 text-white text-xs rounded-sm"
                     size="sm"
                   >
                     {categories.find((c) => c.id === genre)?.name}
@@ -77,18 +74,20 @@ export default function PosterCard({
                 ))}
             </div>
           </div>
-          <div className="absolute inset-x-0 bottom-0 h-0 bg-gradient-to-t from-primary/80 to-primary/60 backdrop-blur-sm transition-all duration-300 group-hover:h-1/3 flex items-center justify-center opacity-0 group-hover:opacity-100">
-            <Link
+          <div className="absolute inset-x-0 bottom-0 h-0 bg-gradient-to-t from-white/80 to-white/60 backdrop-blur-sm transition-all duration-300 group-hover:h-1/3 flex items-center justify-center opacity-0 group-hover:opacity-100">
+            <Button
+              as={Link}
               href={
                 'title' in poster
                   ? `/movies/${poster?.id}`
                   : `/series/${poster?.id}`
               }
-              className="rounded-full bg-white px-6 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-100 transition-colors"
-              onClick={onCloseSearchModal}
+              className="rounded-sm bg-black px-6 py-2 text-sm font-bold text-white hover:bg-gray-100 hover:text-black transition-colors transform rotate-2"
+              onPress={onCloseSearchModal}
+              endContent={<IconLink size={15} />}
             >
               Ver detalles
-            </Link>
+            </Button>
           </div>
         </div>
       </motion.div>

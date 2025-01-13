@@ -3,9 +3,10 @@ import { motion } from 'framer-motion';
 import type { MovieSimilars } from '@/modules/movies/[id]/types/movie-similars';
 import { useState } from 'react';
 import type { Movie } from '@/modules/movies/types/movie';
-import { Button } from '@nextui-org/react';
 import { IconKeyframesFilled } from '@tabler/icons-react';
 import PosterCard from '@/modules/core/components/poster-card';
+import ShowMoreBtn from '@/modules/core/components/show-more-btn';
+import SectionSubtitle from '@/modules/core/components/section-subtitle';
 
 export default function SimilarMovies({
   similars,
@@ -23,13 +24,16 @@ export default function SimilarMovies({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.8 }}
     >
-      <div className="flex items-center gap-3">
-        <IconKeyframesFilled
-          className="text-primary fill-primary flex-shrink-0"
-          size={25}
-        />
-        <h2 className="text-3xl font-semibold">Películas similares</h2>
-      </div>
+      <SectionSubtitle
+        icon={
+          <IconKeyframesFilled
+            className="text-white fill-white flex-shrink-0"
+            size={25}
+          />
+        }
+        subtitle="Películas similares"
+        rotate="rotate-1"
+      />
       <div className="grid max-[400px]:grid-cols-1 min-[400px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
         {similars
           .filter((similarMovie) => similarMovie.poster_path)
@@ -42,13 +46,10 @@ export default function SimilarMovies({
             />
           ))}
       </div>
-      <Button
-        onPress={() => setShowMore(!showMore)}
-        color="primary"
-        className="w-full text-black font-medium"
-      >
-        {showMore ? 'Mostrar menos' : 'Mostrar más'}
-      </Button>
+      <ShowMoreBtn
+        showMore={showMore}
+        setShowMore={() => setShowMore(!showMore)}
+      />
     </motion.article>
   );
 }

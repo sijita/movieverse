@@ -15,7 +15,7 @@ export default function MoviesCategoriesList({
       {categories.map((category: { id: number; name: string }) => (
         <div key={category.id}>
           <Button
-            endContent={
+            startContent={
               <div
                 className={`flex-shrink-0 transition-colors ${
                   searchParams.get('category') === String(category.id)
@@ -34,7 +34,7 @@ export default function MoviesCategoriesList({
                 }
               </div>
             }
-            className={`px-6 justify-between h-16 hover:scale-95 hover:text-black transition-all ${
+            className={`rounded-sm px-6 h-16 hover:scale-95 hover:text-black transition-all shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] ${
               searchParams.get('category') === String(category.id)
                 ? 'bg-primary text-black hover:bg-default hover:text-white'
                 : 'bg-default hover:bg-primary'
@@ -42,7 +42,7 @@ export default function MoviesCategoriesList({
             onPress={() => handleSelectCategory(category.id)}
             fullWidth
           >
-            <p className="text-lg font-medium text-inherit">{category.name}</p>
+            <p className="text-lg font-semibold text-inherit">{category.name}</p>
           </Button>
         </div>
       ))}

@@ -36,8 +36,13 @@ export default function SearchBtn() {
 
   return (
     <>
-      <Button onPress={onOpen} radius="full" fullWidth isIconOnly>
-        <IconSearch className="text-primary" size={20} />
+      <Button
+        className="bg-white rounded-sm"
+        onPress={onOpen}
+        fullWidth
+        isIconOnly
+      >
+        <IconSearch className="text-black" stroke={2.5} size={20} />
       </Button>
       <Modal
         isOpen={isOpen}
@@ -84,12 +89,12 @@ export default function SearchBtn() {
                   }}
                   defaultValue={searchParams.get('query')?.toString()}
                   variant="bordered"
-                  className="w-full "
+                  className="w-full"
                   size="lg"
                   classNames={{
-                    input: 'text-lg',
+                    input: 'text-lg rounded-sm',
                     inputWrapper:
-                      'bg-white/50 dark:bg-black/50 backdrop-blur-xl hover:bg-white/60 dark:hover:bg-black/60 transition-colors border-primary',
+                      'bg-white/50 dark:bg-black/50 backdrop-blur-xl hover:bg-white/60 transition-colors border-primary rounded-sm',
                   }}
                   onClear={() => {
                     handleSearch('query', '');
