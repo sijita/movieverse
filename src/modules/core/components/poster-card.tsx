@@ -27,7 +27,7 @@ export default function PosterCard({
       viewport={{ once: true }}
       className={`${additionalClass}`}
     >
-      <div className="relative overflow-hidden rounded-sm group aspect-[2/3] border-2 border-black p-2 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all h-full">
+      <div className="relative overflow-hidden rounded-sm group aspect-[2/3] border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all h-full">
         <PosterCalificationChip calification={poster?.vote_average ?? 0} />
         <div>
           <Image
