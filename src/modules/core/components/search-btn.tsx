@@ -14,7 +14,11 @@ import PosterCard from './poster-card';
 import { useEffect, useState } from 'react';
 import { searchAction } from '@/modules/core/actions';
 
-export default function SearchBtn() {
+export default function SearchBtn({
+  setIsMenuOpen,
+}: {
+  setIsMenuOpen: () => void;
+}) {
   const { handleSearch, searchParams } = useSearch();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
@@ -38,7 +42,10 @@ export default function SearchBtn() {
     <>
       <Button
         className="bg-white rounded-sm"
-        onPress={onOpen}
+        onPress={() => {
+          setIsMenuOpen();
+          onOpen();
+        }}
         fullWidth
         isIconOnly
       >
@@ -74,6 +81,7 @@ export default function SearchBtn() {
         backdrop="blur"
         className="bg-transparent shadow-none z-50"
         size="3xl"
+        placement="center"
         scrollBehavior="inside"
       >
         <ModalContent>

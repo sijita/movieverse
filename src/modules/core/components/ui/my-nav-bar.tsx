@@ -44,6 +44,7 @@ export default function MyNavbar({ user }: { user: User | null }) {
         menu: 'flex flex-col items-center justify-center top-0 bg-black',
         wrapper: 'max-w-full',
       }}
+      isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
       isBlurred={false}
       shouldHideOnScroll
@@ -53,7 +54,7 @@ export default function MyNavbar({ user }: { user: User | null }) {
           aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
           className="lg:hidden"
         />
-        <NavbarBrand className="grow-0">
+        <NavbarBrand className="max-sm:w-full flex gap-2 justify-between">
           <Button
             className="font-bold text-inherit text-2xl transform -rotate-2 hover:rotate-0 bg-primary p-2 rounded-sm text-black"
             href="/"
@@ -67,6 +68,9 @@ export default function MyNavbar({ user }: { user: User | null }) {
           >
             MovieVerse
           </Button>
+          <NavbarMenuItem className="sm:hidden">
+            <SearchBtn setIsMenuOpen={() => setIsMenuOpen(false)} />
+          </NavbarMenuItem>
         </NavbarBrand>
       </NavbarContent>
       <NavbarContent
@@ -100,7 +104,7 @@ export default function MyNavbar({ user }: { user: User | null }) {
           </NavbarMenuItem>
         )}
         <NavbarMenuItem>
-          <SearchBtn />
+          <SearchBtn setIsMenuOpen={() => setIsMenuOpen(false)} />
         </NavbarMenuItem>
         <NavbarItem>
           {user ? <SessionButton email={user?.email} /> : <AuthModal />}
@@ -111,9 +115,6 @@ export default function MyNavbar({ user }: { user: User | null }) {
           aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
           className="h-10 w-10"
         />
-        <NavbarMenuItem>
-          <SearchBtn />
-        </NavbarMenuItem>
         {navItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
@@ -122,6 +123,7 @@ export default function MyNavbar({ user }: { user: User | null }) {
                 'font-bold bg-white text-black transform rotate-2'
               } font-bold hover:bg-white hover:text-black transition-colors p-2 transform hover:rotate-2 rounded-sm`}
               href={item.href}
+              onClick={() => setIsMenuOpen(false)}
             >
               {item.label}
             </Link>
