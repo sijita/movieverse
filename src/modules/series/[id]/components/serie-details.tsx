@@ -16,6 +16,7 @@ import SerieCast from './serie-cast';
 import SimilarSeries from './similar-series';
 import Link from 'next/link';
 import TrailerModal from '@/modules/core/components/trailer-modal';
+import FavoriteButton from '@/modules/core/components/ui/favorite-button';
 
 export default function SerieDetails({
   serie,
@@ -160,9 +161,7 @@ export default function SerieDetails({
                   Ver trailer
                 </Button>
               )}
-              <Button variant="flat" radius="full" isIconOnly>
-                <IconHeart size={20} className="flex-shrink-0" />
-              </Button>
+              <FavoriteButton id={serie?.id.toString() ?? ''} type={'Serie'} />
             </motion.div>
           </div>
         </div>

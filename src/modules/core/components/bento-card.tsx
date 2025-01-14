@@ -6,6 +6,7 @@ import Link from 'next/link';
 import PosterCalificationChip from '@/modules/core/components/poster-calification-chip';
 import type { Movie } from '@/modules/movies/types/movie';
 import type { Serie } from '@/modules/series/types/serie';
+import FavoriteButton from './ui/favorite-button';
 
 export default function BentoCard({
   i,
@@ -69,7 +70,7 @@ export default function BentoCard({
             </div>
           </div>
         </div>
-        <div className="absolute inset-x-0 bottom-0 h-0 bg-gradient-to-t from-white/80 to-white/60 backdrop-blur-sm transition-all duration-300 group-hover:h-1/2 flex items-center justify-center opacity-0 group-hover:opacity-100">
+        <div className="absolute inset-x-0 bottom-0 h-0 bg-gradient-to-t from-white/80 to-white/60 backdrop-blur-sm transition-all duration-300 group-hover:h-1/2 flex items-center gap-2 justify-center opacity-0 group-hover:opacity-100">
           <Button
             as={Link}
             href={
@@ -77,12 +78,16 @@ export default function BentoCard({
                 ? `/movies/${poster.id}`
                 : `/series/${poster.id}`
             }
-            className="rounded-sm bg-black px-6 py-2 text-sm font-bold text-white hover:bg-gray-100 hover:text-black transition-colors transform rotate-2"
+            className="rounded-sm bg-black px-6 py-2 text-sm font-bold text-white hover:bg-gray-100 hover:text-black transition-colors transform -rotate-2"
             endContent={<IconLink size={15} />}
             size="sm"
           >
             Ver detalles
           </Button>
+          <FavoriteButton
+            id={poster?.id.toString() ?? ''}
+            type={'title' in poster ? 'Película' : 'Serie'}
+          />
         </div>
       </div>
     </div>

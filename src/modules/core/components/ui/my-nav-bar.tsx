@@ -9,13 +9,16 @@ import {
   NavbarMenuItem,
   Button,
 } from '@nextui-org/react';
-import { IconMovie, IconUser } from '@tabler/icons-react';
+import { IconMovie } from '@tabler/icons-react';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import SearchBtn from '@/modules/core/components/search-btn';
+import AuthModal from './auth-modal';
+import type { User } from '@supabase/supabase-js';
+import SessionButton from './session-button';
 
-export default function MyNavbar() {
+export default function MyNavbar({ user }: { user: User | null }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
 
@@ -66,7 +69,10 @@ export default function MyNavbar() {
           </Button>
         </NavbarBrand>
       </NavbarContent>
-      <NavbarContent className="flex items-center gap-5" justify="center">
+      <NavbarContent
+        className="flex items-center gap-5 max-lg:hidden"
+        justify="center"
+      >
         {navItems.map((item, i) => (
           <Link
             key={i}
@@ -85,14 +91,7 @@ export default function MyNavbar() {
           <SearchBtn />
         </NavbarMenuItem>
         <NavbarItem>
-          <Button
-            color="primary"
-            className="text-black bg-primary rounded-sm font-bold transform hover:rotate-2 hover:scale-105 transition-transform"
-            onPress={() => {}}
-            endContent={<IconUser stroke={2.5} size={17} />}
-          >
-            Iniciar sesión
-          </Button>
+          {user ? <SessionButton email={user?.email} /> : <AuthModal />}
         </NavbarItem>
       </NavbarContent>
       <NavbarMenu>

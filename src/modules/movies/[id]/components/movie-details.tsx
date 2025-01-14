@@ -5,7 +5,6 @@ import type { MovieSimilars } from '@/modules/movies/[id]/types/movie-similars';
 import {
   IconCalendar,
   IconClock,
-  IconHeart,
   IconPlayerPlayFilled,
   IconStarFilled,
 } from '@tabler/icons-react';
@@ -16,6 +15,7 @@ import MovieCast from './movie-cast';
 import SimilarMovies from './similar-movies';
 import Link from 'next/link';
 import TrailerModal from '@/modules/core/components/trailer-modal';
+import FavoriteButton from '@/modules/core/components/ui/favorite-button';
 
 export default function MovieDetails({
   movie,
@@ -158,9 +158,10 @@ export default function MovieDetails({
                   Ver trailer
                 </Button>
               )}
-              <Button variant="flat" radius="full" isIconOnly>
-                <IconHeart size={20} className="flex-shrink-0" />
-              </Button>
+              <FavoriteButton
+                id={movie?.id.toString() ?? ''}
+                type={'Película'}
+              />
             </motion.div>
           </div>
         </div>
