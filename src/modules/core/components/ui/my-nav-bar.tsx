@@ -107,6 +107,10 @@ export default function MyNavbar({ user }: { user: User | null }) {
         </NavbarItem>
       </NavbarContent>
       <NavbarMenu className="gap-5 z-[90]">
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+          className="h-10 w-10"
+        />
         <NavbarMenuItem>
           <SearchBtn />
         </NavbarMenuItem>
