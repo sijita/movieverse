@@ -1,4 +1,3 @@
-'use client';
 import { Movie } from '@/modules/movies/types/movie';
 import PostersRow from '@/modules/core/components/posters-row';
 import TrendingTabs from '@/modules/core/components/trending-tabs';

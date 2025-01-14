@@ -1,4 +1,3 @@
-'use client';
 import { Serie } from '@/modules/series/types/serie';
 import PostersRow from '@/modules/core/components/posters-row';
 import TrendingTabs from '@/modules/core/components/trending-tabs';
