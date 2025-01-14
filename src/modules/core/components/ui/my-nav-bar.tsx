@@ -106,7 +106,7 @@ export default function MyNavbar({ user }: { user: User | null }) {
           {user ? <SessionButton email={user?.email} /> : <AuthModal />}
         </NavbarItem>
       </NavbarContent>
-      <NavbarMenu>
+      <NavbarMenu className="gap-5">
         <NavbarMenuItem>
           <SearchBtn />
         </NavbarMenuItem>
@@ -114,16 +114,30 @@ export default function MyNavbar({ user }: { user: User | null }) {
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
               className={`${
-                pathname.includes(item.href)
-                  ? 'text-primary font-semibold'
-                  : 'text-white'
-              } text-lg`}
+                pathname === item.href &&
+                'font-bold bg-white text-black transform rotate-2'
+              } font-bold hover:bg-white hover:text-black transition-colors p-2 transform hover:rotate-2 rounded-sm`}
               href={item.href}
             >
               {item.label}
             </Link>
           </NavbarMenuItem>
         ))}
+        <NavbarMenuItem className="flex items-center gap-2 flex-wrap sm:hidden">
+          {user && (
+            <NavbarMenuItem>
+              <Button
+                href="/favorites"
+                as={Link}
+                isIconOnly
+                className="bg-danger rounded-sm"
+              >
+                <IconHeart className="fill-white stroke-white" size={25} />
+              </Button>
+            </NavbarMenuItem>
+          )}
+          {user ? <SessionButton email={user?.email} /> : <AuthModal />}
+        </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>
   );
