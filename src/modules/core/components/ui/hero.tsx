@@ -43,9 +43,9 @@ export default function Hero({ poster }: { poster: Movie | Serie }) {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="bg-black p-2 transform rotate-1 w-auto sm:w-fit z-50"
+            className="bg-black p-2 transform rotate-1 w-auto sm:w-fit z-30"
           >
-            <p className="text-2xl text-white font-semibold">
+            <p className="text-2xl text-white text-center font-semibold">
               Información acerca de películas y series
             </p>
           </motion.div>
@@ -61,7 +61,7 @@ export default function Hero({ poster }: { poster: Movie | Serie }) {
           <h3 className="text-4xl font-black transform -rotate-1 drop-shadow-md">
             {posterTitle}
           </h3>
-          <div className="bg-black p-1 w-fit z-50">
+          <div className="bg-black p-1 w-fit z-30">
             <span className="text-sm text-white font-semibold">
               {formattedDate}
             </span>
@@ -80,7 +80,7 @@ export default function Hero({ poster }: { poster: Movie | Serie }) {
             <Button
               href={`/movies/${poster?.id}`}
               as={Link}
-              className="bg-black text-white font-bold text-xl p-6 border-2 border-white transform hover:rotate-2 hover:scale-105 transition-transform rounded-sm z-50"
+              className="bg-black text-white font-bold text-xl p-6 border-2 border-white transform hover:rotate-2 hover:scale-105 transition-transform rounded-sm z-30"
               startContent={<IconPlayerPlayFilled />}
             >
               Ver ahora
