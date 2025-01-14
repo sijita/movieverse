@@ -18,7 +18,7 @@ export default function SectionTitle({
     >
       <Link
         href={href}
-        className="text-4xl font-bold text-black hover:text-white hover:bg-black transition-colors"
+        className="text-4xl font-bold text-black transition-colors"
       >
         {title}
       </Link>

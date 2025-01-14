@@ -19,7 +19,13 @@ export const addFavorite = async (id: string, type: string) => {
 
     await supabase
       .from('user_favorites')
-      .insert([{ favorite_item: id, user_id: user.id }])
+      .insert([
+        {
+          favorite_item: id,
+          favorite_type: type.toLowerCase().replace('í', 'i'),
+          user_id: user.id,
+        },
+      ])
       .throwOnError();
 
     revalidatePath('/', 'layout');
@@ -54,7 +60,11 @@ export const removeFavorite = async (id: string, type: string) => {
     await supabase
       .from('user_favorites')
       .delete()
-      .match({ favorite_item: id, user_id: user.id })
+      .match({
+        favorite_item: id,
+        favorite_type: type.toLowerCase().replace('í', 'i'),
+        user_id: user.id,
+      })
       .throwOnError();
 
     revalidatePath('/', 'layout');

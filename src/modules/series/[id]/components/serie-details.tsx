@@ -7,7 +7,6 @@ import Image from 'next/image';
 import { Button, Chip, useDisclosure } from '@nextui-org/react';
 import {
   IconCalendar,
-  IconHeart,
   IconPlayerPlayFilled,
   IconSection,
   IconStarFilled,

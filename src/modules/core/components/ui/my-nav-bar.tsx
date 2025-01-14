@@ -9,7 +9,7 @@ import {
   NavbarMenuItem,
   Button,
 } from '@nextui-org/react';
-import { IconMovie } from '@tabler/icons-react';
+import { IconHeart, IconMovie } from '@tabler/icons-react';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
@@ -87,6 +87,16 @@ export default function MyNavbar({ user }: { user: User | null }) {
         ))}
       </NavbarContent>
       <NavbarContent className="hidden sm:flex" justify="end">
+        <NavbarMenuItem>
+          <Button
+            href="/favorites"
+            as={Link}
+            isIconOnly
+            className="bg-danger rounded-sm"
+          >
+            <IconHeart className="fill-white stroke-white" size={25} />
+          </Button>
+        </NavbarMenuItem>
         <NavbarMenuItem>
           <SearchBtn />
         </NavbarMenuItem>
