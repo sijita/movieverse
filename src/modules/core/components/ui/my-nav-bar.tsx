@@ -106,7 +106,7 @@ export default function MyNavbar({ user }: { user: User | null }) {
           {user ? <SessionButton email={user?.email} /> : <AuthModal />}
         </NavbarItem>
       </NavbarContent>
-      <NavbarMenu className="gap-5">
+      <NavbarMenu className="gap-5 z-[90]">
         <NavbarMenuItem>
           <SearchBtn />
         </NavbarMenuItem>
@@ -123,7 +123,7 @@ export default function MyNavbar({ user }: { user: User | null }) {
             </Link>
           </NavbarMenuItem>
         ))}
-        <NavbarMenuItem className="flex items-center gap-2 flex-wrap sm:hidden z-[9999]">
+        <NavbarMenuItem className="flex items-center gap-2 flex-wrap sm:hidden">
           {user && (
             <NavbarMenuItem>
               <Button
