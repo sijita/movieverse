@@ -87,16 +87,18 @@ export default function MyNavbar({ user }: { user: User | null }) {
         ))}
       </NavbarContent>
       <NavbarContent className="hidden sm:flex" justify="end">
-        <NavbarMenuItem>
-          <Button
-            href="/favorites"
-            as={Link}
-            isIconOnly
-            className="bg-danger rounded-sm"
-          >
-            <IconHeart className="fill-white stroke-white" size={25} />
-          </Button>
-        </NavbarMenuItem>
+        {user && (
+          <NavbarMenuItem>
+            <Button
+              href="/favorites"
+              as={Link}
+              isIconOnly
+              className="bg-danger rounded-sm"
+            >
+              <IconHeart className="fill-white stroke-white" size={25} />
+            </Button>
+          </NavbarMenuItem>
+        )}
         <NavbarMenuItem>
           <SearchBtn />
         </NavbarMenuItem>
