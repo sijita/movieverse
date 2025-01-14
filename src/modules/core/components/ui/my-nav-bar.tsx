@@ -123,7 +123,7 @@ export default function MyNavbar({ user }: { user: User | null }) {
             </Link>
           </NavbarMenuItem>
         ))}
-        <NavbarMenuItem className="flex items-center gap-2 flex-wrap sm:hidden">
+        <NavbarMenuItem className="flex items-center gap-2 flex-wrap sm:hidden z-50">
           {user && (
             <NavbarMenuItem>
               <Button

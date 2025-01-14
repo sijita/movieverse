@@ -47,10 +47,10 @@ export default function SerieDetails({
       >
         <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent" />
       </header>
-      <div className="px-10 sm:px-20 -mt-[200px] relative z-10">
+      <div className="px-10 sm:px-20 -mt-[200px] relative z-10 pb-10">
         <div className="flex flex-col md:flex-row gap-8">
           <motion.div
-            className="flex-shrink-0 border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]"
+            className="max-[350px]:w-full w-64 flex-shrink-0 border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
