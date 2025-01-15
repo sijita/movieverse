@@ -10,11 +10,20 @@ export default function AuthModal() {
     <>
       <Button
         color="primary"
-        className="text-black bg-primary rounded-sm font-bold transform hover:rotate-2 hover:scale-105 transition-transform"
+        className="text-black bg-primary rounded-sm font-bold transform hover:rotate-2 hover:scale-105 transition-transform max-sm:hidden"
         onPress={() => onOpen()}
         endContent={<IconUser stroke={2.5} size={17} />}
       >
         Iniciar sesión
+      </Button>
+      <Button
+        color="primary"
+        className="text-black bg-primary rounded-sm font-bold transform hover:rotate-2 hover:scale-105 transition-transform sm:hidden"
+        onPress={() => onOpen()}
+        size="sm"
+        isIconOnly
+      >
+        <IconUser stroke={2.5} size={17} />
       </Button>
       <Modal
         isOpen={isOpen}

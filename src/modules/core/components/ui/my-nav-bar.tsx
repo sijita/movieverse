@@ -68,9 +68,14 @@ export default function MyNavbar({ user }: { user: User | null }) {
           >
             MovieVerse
           </Button>
-          <NavbarMenuItem className="sm:hidden">
-            <SearchBtn setIsMenuOpen={() => setIsMenuOpen(false)} />
-          </NavbarMenuItem>
+          <div className="flex gap-1 items-center">
+            <NavbarMenuItem className="sm:hidden">
+              <SearchBtn setIsMenuOpen={() => setIsMenuOpen(false)} />
+            </NavbarMenuItem>
+            <NavbarItem className="sm:hidden">
+              {user ? <SessionButton email={user?.email} /> : <AuthModal />}
+            </NavbarItem>
+          </div>
         </NavbarBrand>
       </NavbarContent>
       <NavbarContent
@@ -129,21 +134,6 @@ export default function MyNavbar({ user }: { user: User | null }) {
             </Link>
           </NavbarMenuItem>
         ))}
-        <NavbarMenuItem className="flex items-center gap-2 flex-wrap sm:hidden">
-          {user && (
-            <NavbarMenuItem>
-              <Button
-                href="/favorites"
-                as={Link}
-                isIconOnly
-                className="bg-danger rounded-sm"
-              >
-                <IconHeart className="fill-white stroke-white" size={25} />
-              </Button>
-            </NavbarMenuItem>
-          )}
-          {user ? <SessionButton email={user?.email} /> : <AuthModal />}
-        </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>
   );

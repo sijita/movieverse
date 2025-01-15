@@ -41,7 +41,7 @@ export default function SearchBtn({
   return (
     <>
       <Button
-        className="bg-white rounded-sm"
+        className="bg-white rounded-sm max-sm:hidden"
         onPress={() => {
           setIsMenuOpen();
           onOpen();
@@ -50,6 +50,17 @@ export default function SearchBtn({
         isIconOnly
       >
         <IconSearch className="text-black" stroke={2.5} size={20} />
+      </Button>
+      <Button
+        className="bg-white rounded-sm sm:hidden"
+        onPress={() => {
+          setIsMenuOpen();
+          onOpen();
+        }}
+        size="sm"
+        isIconOnly
+      >
+        <IconSearch className="text-black" stroke={2.5} size={17} />
       </Button>
       <Modal
         isOpen={isOpen}
